@@ -1,4 +1,4 @@
-API Key
+RapiAPI Key
 =======
 
 To add your API KEY create a file called `apikey.py` in the
@@ -10,9 +10,10 @@ APIKEY='...'
 
 This file will be ignored by git, do not add it!
 
-New API keys can be requested from:
+Your API key can be received by subscribing to Alpha Vantage on
+[rapidapi.com](https://rapidapi.com):
 
-https://www.alphavantage.co/support/#api-key
+https://rapidapi.com/alphavantage/api/alpha-vantage/pricing
 
 
 
