@@ -31,7 +31,7 @@ class WeakBets(irc.bot.SingleServerIRCBot):
         n = self.connection.get_nickname()
         a = e.arguments[0].split(':', 1)
         if len(a) > 1 and irc.strings.lower(a[0]) == irc.strings.lower(n):
-            self.do_command(e, a[1].strip())
+            self.do_command(e, ' '.join(a[1:]).strip())
 
     def do_command(self, e, cmd):
         con = self.connection
