@@ -14,6 +14,7 @@ def handle(bot, e, cmd):
 
 def do_test(bot, e, cmd):
     con = bot.connection
+    chn = e.target
 
     parser = argparse.ArgumentParser(
             prog=con.get_nickname(),
@@ -21,10 +22,13 @@ def do_test(bot, e, cmd):
             exit_on_error=False,
         )
 
-    parser.add_argument('numbers', type=int, nargs='?')
+    parser.add_argument('number', type=int, nargs='?')
 
     try:
         args = parser.parse_args(cmd)
-        con.privmsg(e.target, f'ok: {args.numbers}')
+        if args.number == 69:
+            con.privmsg(chn, f'nice: {args.number}')
+        else:
+            con.privmsg(chn, f'ok: {args.number}')
     except argparse.ArgumentError as err:
-        con.privmsg(e.target, f'failed: {err}')
+        con.privmsg(chn, f'failed: {err}')
