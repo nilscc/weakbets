@@ -1,3 +1,5 @@
+import sys
+
 # irc library
 import irc.bot
 
@@ -11,7 +13,7 @@ NICKNAME='weakbets'
 REALNAME=NICKNAME
 
 SRV_FREENODE = irc.bot.ServerSpec('irc.freenode.net', port=7070)
-CHANNEL = '###weakpots'
+CHANNEL = '##weakpots'
 
 class WeakBets(irc.bot.SingleServerIRCBot):
     def __init__(self, nickname=NICKNAME, realname=REALNAME, server_list=[SRV_FREENODE], channel=CHANNEL, **kwargs):
@@ -41,13 +43,15 @@ class WeakBets(irc.bot.SingleServerIRCBot):
         else:
             try:
                 weakbets.modules.handle(self, e, cmd)
-            except:
+            except Exception as exc:
+                print(exc, file=sys.stderr)
                 con.privmsg(e.target, 'idk?')
 
     def reload(self, e):
         con = self.connection
         try:
             importlib.reload(weakbets.modules)
+            weakbets.modules.reload()
             con.privmsg(e.target, 'Reload successful.')
         except:
             con.privmsg(e.target, 'Reload failed.')
