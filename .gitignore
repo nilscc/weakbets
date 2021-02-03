@@ -1,2 +1,8 @@
 *.swp
 *.pyc
+
+# virtual environment files from python
+bin/
+include/
+lib/
+run.sh
