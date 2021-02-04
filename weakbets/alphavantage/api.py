@@ -33,13 +33,15 @@ def global_quote(symbol):
         j = json.loads(response.text)
         glob = j['Global Quote']
         symb = glob['01. symbol']
+        opn  = glob['02. open']
         high = glob['03. high']
         low  = glob['04. low']
         pric = glob['05. price']
         volu = glob['06. volume']
+        #prev = glob['08. previous close']
         chng = glob['09. change']
         chpr = glob['10. change percent']
-        return f'{symb}: {pric} ({low} .. {high}), Volume: {volu}, Change: {chng} ({chpr})'
+        return f'{symb}: ${pric} (${low} .. ${high}), open: ${opn}, change: ${chng} ({chpr}), volume: {volu}'
     else:
         print(response.status_code, response.text)
         return 'Something went wrong.'
